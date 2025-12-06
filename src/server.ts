@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { connectDB } from '@/config/database';
 import authRoutes from '@/routes/auth.routes';
+import { errorHandler } from '@/middleware/error.middleware';
 
 dotenv.config();
 
@@ -30,8 +31,11 @@ app.get('/collections', async (req, res) => {
   }
 });
 
-// Auth routes
+// Routes
 app.use('/api/auth', authRoutes);
+
+// Error handler (MUST be last)
+app.use(errorHandler);
 
 // Connect to MongoDB
 connectDB();
