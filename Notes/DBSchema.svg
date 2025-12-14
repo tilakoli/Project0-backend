@@ -1,0 +1,230 @@
+<svg viewBox="0 0 1400 1800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .collection-box { fill: #ffffff; stroke: #2c3e50; stroke-width: 2; }
+      .collection-header { fill: #27ae60; }
+      .embedded-header { fill: #3498db; }
+      .collection-text { fill: #ffffff; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; }
+      .field-text { fill: #2c3e50; font-family: 'Courier New', monospace; font-size: 11px; }
+      .embedded-text { fill: #2980b9; font-family: Arial, sans-serif; font-size: 12px; font-style: italic; }
+      .line { stroke: #95a5a6; stroke-width: 2; fill: none; }
+      .ref-text { fill: #e74c3c; font-family: Arial, sans-serif; font-size: 10px; }
+    </style>
+  </defs>
+
+  <!-- Users Collection -->
+  <g id="users">
+    <rect class="collection-box" x="30" y="30" width="320" height="520"/>
+    <rect class="collection-header" x="30" y="30" width="320" height="35"/>
+    <text class="collection-text" x="190" y="53" text-anchor="middle">Users Collection</text>
+    
+    <text class="field-text" x="40" y="80">_id: ObjectId</text>
+    <text class="field-text" x="40" y="100">firstName: String*</text>
+    <text class="field-text" x="40" y="120">lastName: String*</text>
+    <text class="field-text" x="40" y="140">email: String* (unique)</text>
+    <text class="field-text" x="40" y="160">phoneNumber: String* (unique)</text>
+    <text class="field-text" x="40" y="180">profileImage: String</text>
+    <text class="field-text" x="40" y="200">address: String</text>
+    <text class="field-text" x="40" y="220">role: String* [rider|passenger]</text>
+    
+    <rect class="embedded-header" x="40" y="235" width="290" height="25"/>
+    <text class="embedded-text" x="185" y="252" text-anchor="middle">auth (embedded)</text>
+    <text class="field-text" x="50" y="275">username: String* (unique)</text>
+    <text class="field-text" x="50" y="292">passwordHash: String*</text>
+    <text class="field-text" x="50" y="309">lastLogin: Date</text>
+    <text class="field-text" x="50" y="326">isActive: Boolean</text>
+    
+    <rect class="embedded-header" x="40" y="340" width="290" height="25"/>
+    <text class="embedded-text" x="185" y="357" text-anchor="middle">otp (embedded)</text>
+    <text class="field-text" x="50" y="380">code: String</text>
+    <text class="field-text" x="50" y="397">expiresAt: Date</text>
+    <text class="field-text" x="50" y="414">verified: Boolean</text>
+    
+    <rect class="embedded-header" x="40" y="428" width="290" height="25"/>
+    <text class="embedded-text" x="185" y="445" text-anchor="middle">riderDetails (embedded, if role=rider)</text>
+    <text class="field-text" x="50" y="468">licenseNumber: String</text>
+    <text class="field-text" x="50" y="485">licenseValidity: Date</text>
+    <text class="field-text" x="50" y="502">licenseImage: String</text>
+    <text class="field-text" x="50" y="519">vehicleImage: String</text>
+    <text class="field-text" x="50" y="536">paymentQrImage: String</text>
+    
+    <text class="field-text" x="40" y="560">isDeleted: Boolean</text>
+    <text class="field-text" x="40" y="577">deletedAt: Date</text>
+    <text class="field-text" x="40" y="594">createdAt: Date</text>
+    <text class="field-text" x="40" y="611">updatedAt: Date</text>
+  </g>
+
+  <!-- Vehicles Collection -->
+  <g id="vehicles">
+    <rect class="collection-box" x="400" y="30" width="320" height="320"/>
+    <rect class="collection-header" x="400" y="30" width="320" height="35"/>
+    <text class="collection-text" x="560" y="53" text-anchor="middle">Vehicles Collection</text>
+    
+    <text class="field-text" x="410" y="80">_id: ObjectId</text>
+    <text class="field-text" x="410" y="100">ownerId: ObjectId* → Users</text>
+    <text class="field-text" x="410" y="120">driverId: ObjectId* → Users</text>
+    <text class="field-text" x="410" y="140">type: String* [motorcycle|taxi]</text>
+    <text class="field-text" x="410" y="160">plateNumber: String* (unique)</text>
+    <text class="field-text" x="410" y="180">model: String*</text>
+    <text class="field-text" x="410" y="200">blueBookImage: String</text>
+    <text class="field-text" x="410" y="220">blueBookValidity: Date</text>
+    <text class="field-text" x="410" y="240">isActive: Boolean</text>
+    <text class="field-text" x="410" y="260">createdAt: Date</text>
+    <text class="field-text" x="410" y="280">updatedAt: Date</text>
+    
+    <text class="ref-text" x="410" y="310">Ref: ownerId, driverId</text>
+  </g>
+
+  <!-- Shifts Collection -->
+  <g id="shifts">
+    <rect class="collection-box" x="770" y="30" width="320" height="240"/>
+    <rect class="collection-header" x="770" y="30" width="320" height="35"/>
+    <text class="collection-text" x="930" y="53" text-anchor="middle">Shifts Collection</text>
+    
+    <text class="field-text" x="780" y="80">_id: ObjectId</text>
+    <text class="field-text" x="780" y="100">driverId: ObjectId* → Users</text>
+    <text class="field-text" x="780" y="120">vehicleId: ObjectId* → Vehicles</text>
+    <text class="field-text" x="780" y="140">shiftStartTime: Date*</text>
+    <text class="field-text" x="780" y="160">shiftEndTime: Date</text>
+    <text class="field-text" x="780" y="180">logInTime: Date*</text>
+    <text class="field-text" x="780" y="200">logOutTime: Date</text>
+    <text class="field-text" x="780" y="220">isActive: Boolean</text>
+    
+    <text class="ref-text" x="780" y="250">Ref: driverId, vehicleId</text>
+  </g>
+
+  <!-- Rides Collection -->
+  <g id="rides">
+    <rect class="collection-box" x="30" y="650" width="380" height="540"/>
+    <rect class="collection-header" x="30" y="650" width="380" height="35"/>
+    <text class="collection-text" x="220" y="673" text-anchor="middle">Rides Collection</text>
+    
+    <text class="field-text" x="40" y="700">_id: ObjectId</text>
+    <text class="field-text" x="40" y="720">passengerId: ObjectId* → Users</text>
+    <text class="field-text" x="40" y="740">driverId: ObjectId* → Users</text>
+    <text class="field-text" x="40" y="760">shiftId: ObjectId* → Shifts</text>
+    <text class="field-text" x="40" y="780">vehicleId: ObjectId* → Vehicles</text>
+    
+    <rect class="embedded-header" x="40" y="795" width="350" height="25"/>
+    <text class="embedded-text" x="215" y="812" text-anchor="middle">pickup (embedded)</text>
+    <text class="field-text" x="50" y="835">address: String*</text>
+    <text class="field-text" x="50" y="852">latitude: Number*</text>
+    <text class="field-text" x="50" y="869">longitude: Number*</text>
+    
+    <rect class="embedded-header" x="40" y="883" width="350" height="25"/>
+    <text class="embedded-text" x="215" y="900" text-anchor="middle">dropoff (embedded)</text>
+    <text class="field-text" x="50" y="923">address: String*</text>
+    <text class="field-text" x="50" y="940">latitude: Number*</text>
+    <text class="field-text" x="50" y="957">longitude: Number*</text>
+    
+    <text class="field-text" x="40" y="980">status: String* [requested|accepted|</text>
+    <text class="field-text" x="40" y="995">  driver_arrived|in_progress|completed|cancelled]</text>
+    <text class="field-text" x="40" y="1015">price: Number</text>
+    <text class="field-text" x="40" y="1035">paymentMethod: String [cash|bank|qr]</text>
+    <text class="field-text" x="40" y="1055">paymentStatus: String [pending|paid|disputed]</text>
+    <text class="field-text" x="40" y="1075">paymentProofImage: String</text>
+    <text class="field-text" x="40" y="1095">rideStartTime: Date</text>
+    <text class="field-text" x="40" y="1115">rideEndTime: Date</text>
+    <text class="field-text" x="40" y="1135">riderComment: String</text>
+    <text class="field-text" x="40" y="1155">passengerComment: String</text>
+    <text class="field-text" x="40" y="1175">createdAt: Date</text>
+    
+    <text class="ref-text" x="40" y="1210">Ref: passengerId, driverId, shiftId, vehicleId</text>
+  </g>
+
+  <!-- Ratings Collection -->
+  <g id="ratings">
+    <rect class="collection-box" x="460" y="650" width="320" height="200"/>
+    <rect class="collection-header" x="460" y="650" width="320" height="35"/>
+    <text class="collection-text" x="620" y="673" text-anchor="middle">Ratings Collection</text>
+    
+    <text class="field-text" x="470" y="700">_id: ObjectId</text>
+    <text class="field-text" x="470" y="720">rideId: ObjectId* → Rides</text>
+    <text class="field-text" x="470" y="740">ratedByUserId: ObjectId* → Users</text>
+    <text class="field-text" x="470" y="760">ratedUserId: ObjectId* → Users</text>
+    <text class="field-text" x="470" y="780">rating: Number* (1-5)</text>
+    <text class="field-text" x="470" y="800">comment: String</text>
+    <text class="field-text" x="470" y="820">createdAt: Date</text>
+    
+    <text class="ref-text" x="470" y="850">Ref: rideId, ratedByUserId, ratedUserId</text>
+  </g>
+
+  <!-- Driver Location Collection -->
+  <g id="driverLocation">
+    <rect class="collection-box" x="830" y="650" width="320" height="180"/>
+    <rect class="collection-header" x="830" y="650" width="320" height="35"/>
+    <text class="collection-text" x="990" y="673" text-anchor="middle">DriverLocation Collection</text>
+    
+    <text class="field-text" x="840" y="700">_id: ObjectId</text>
+    <text class="field-text" x="840" y="720">driverId: ObjectId* → Users</text>
+    <text class="field-text" x="840" y="740">latitude: Number*</text>
+    <text class="field-text" x="840" y="760">longitude: Number*</text>
+    <text class="field-text" x="840" y="780">heading: Number</text>
+    <text class="field-text" x="840" y="800">timestamp: Date*</text>
+    
+    <text class="ref-text" x="840" y="830">Ref: driverId (indexed)</text>
+  </g>
+
+  <!-- Reports Collection -->
+  <g id="reports">
+    <rect class="collection-box" x="460" y="900" width="340" height="240"/>
+    <rect class="collection-header" x="460" y="900" width="340" height="35"/>
+    <text class="collection-text" x="630" y="923" text-anchor="middle">Reports Collection</text>
+    
+    <text class="field-text" x="470" y="950">_id: ObjectId</text>
+    <text class="field-text" x="470" y="970">reportedUserId: ObjectId* → Users</text>
+    <text class="field-text" x="470" y="990">reporterUserId: ObjectId* → Users</text>
+    <text class="field-text" x="470" y="1010">rideId: ObjectId → Rides (optional)</text>
+    <text class="field-text" x="470" y="1030">reason: String* [inappropriate_behavior|</text>
+    <text class="field-text" x="470" y="1045">  safety_concern|fraud|other]</text>
+    <text class="field-text" x="470" y="1065">description: String*</text>
+    <text class="field-text" x="470" y="1085">status: String [pending|reviewing|</text>
+    <text class="field-text" x="470" y="1100">  resolved|dismissed]</text>
+    <text class="field-text" x="470" y="1120">createdAt: Date</text>
+    
+    <text class="ref-text" x="470" y="1150">Ref: reportedUserId, reporterUserId, rideId</text>
+  </g>
+
+  <!-- Notifications Collection -->
+  <g id="notifications">
+    <rect class="collection-box" x="850" y="900" width="320" height="200"/>
+    <rect class="collection-header" x="850" y="900" width="320" height="35"/>
+    <text class="collection-text" x="1010" y="923" text-anchor="middle">Notifications Collection</text>
+    
+    <text class="field-text" x="860" y="950">_id: ObjectId</text>
+    <text class="field-text" x="860" y="970">userId: ObjectId* → Users</text>
+    <text class="field-text" x="860" y="990">type: String* [ride_update|payment|</text>
+    <text class="field-text" x="860" y="1005">  report|general]</text>
+    <text class="field-text" x="860" y="1025">title: String*</text>
+    <text class="field-text" x="860" y="1045">message: String*</text>
+    <text class="field-text" x="860" y="1065">isRead: Boolean</text>
+    <text class="field-text" x="860" y="1085">createdAt: Date</text>
+    
+    <text class="ref-text" x="860" y="1115">Ref: userId (indexed)</text>
+  </g>
+
+  <!-- Relationship Lines -->
+  <path class="line" d="M 350 200 L 400 150"/>
+  <path class="line" d="M 350 250 L 400 180"/>
+  <path class="line" d="M 350 300 L 770 140"/>
+  <path class="line" d="M 720 150 L 770 140"/>
+  <path class="line" d="M 220 650 L 220 611"/>
+  <path class="line" d="M 250 650 L 560 350"/>
+  <path class="line" d="M 280 650 L 930 270"/>
+  <path class="line" d="M 410 900 L 620 850"/>
+  <path class="line" d="M 350 350 L 990 650"/>
+  <path class="line" d="M 350 400 L 630 900"/>
+  <path class="line" d="M 350 450 L 1010 900"/>
+
+  <!-- Legend -->
+  <g id="legend">
+    <rect class="collection-box" x="30" y="1250" width="320" height="130"/>
+    <rect class="collection-header" x="30" y="1250" width="320" height="30"/>
+    <text class="collection-text" x="190" y="1270" text-anchor="middle">MongoDB Schema Notes</text>
+    <text class="field-text" x="40" y="1295">• * = Required field</text>
+    <text class="field-text" x="40" y="1315">• ObjectId → Collection = Reference</text>
+    <text class="field-text" x="40" y="1335">• Embedded docs reduce joins</text>
+    <text class="field-text" x="40" y="1355">• Indexed fields for fast queries</text>
+    <text class="field-text" x="40" y="1375">• Use populate() for references</text>
+  </g>
+</svg>
